@@ -1,4 +1,4 @@
-<<?php
+<?php
 
 declare(strict_types=1);
 
@@ -20,7 +20,7 @@ function catalogGetCategory(): array
         3 => [
             'category_id' => 3,
             'name'        => 'Gaming',
-            'url'         => 'Gaming',
+            'url'         => 'gaming',
             'posts'    => [2, 4, 6]
         ]
     ];
@@ -74,7 +74,7 @@ function catalogGetPost(): array
     ];
 }
 
-function catalogGetCategoryProduct(int $categoryId): array
+function catalogGetCategoryPost(int $categoryId): array
 {
     $categories = catalogGetCategory();
 
@@ -82,18 +82,18 @@ function catalogGetCategoryProduct(int $categoryId): array
         throw new InvalidArgumentException("Category with ID $categoryId does not exist");
     }
 
-    $productsForCategory = [];
+    $postsForCategory = [];
     $posts = catalogGetPost();
 
     foreach ($categories[$categoryId]['posts'] as $postId) {
-        if (!isset($products[$postId])) {
+        if (!isset($posts[$postId])) {
             throw new InvalidArgumentException("Post with ID $postId from category $categoryId does not exist");
         }
 
-        $productsForCategory[] = $products[$postId];
+        $postsForCategory[] = $posts[$postId];
     }
 
-    return $productsForCategory;
+    return $postsForCategory;
 }
 
 function catalogGetCategoryByUrl(string $url): ?array
@@ -108,7 +108,7 @@ function catalogGetCategoryByUrl(string $url): ?array
     return array_pop($data);
 }
 
-function catalogGetProductByUrl(string $url): ?array
+function catalogGetPostByUrl(string $url): ?array
 {
     $data = array_filter(
         catalogGetPost(),

@@ -1,7 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
 require_once 'data.php';
 ?>
 <!DOCTYPE html>
@@ -45,14 +42,13 @@ require_once 'data.php';
     <section title="Posts">
         <h1><?= $data['name'] ?></h1>
         <div class="post-list">
-            <?php foreach (catalogGetCategoryProduct($data['category_id']) as $post) : ?>
+            <?php foreach (catalogGetCategoryPost($data['category_id']) as $post) : ?>
                 <div class="post">
                     <a href="/<?= $post['url'] ?>" title="<?= $post['name'] ?>">
-                        <img src="/product-placeholder.png" alt="<?= $post['name'] ?>" width="200"/>
+                        <img src="/post-placeholder.png" alt="<?= $post['name'] ?>" width="200"/>
                     </a>
                     <a href="/<?= $post['url'] ?>" title="<?= $post['name'] ?>"><?= $post['name'] ?></a>
-                    <span>$<?= number_format($ost['price'], 2) ?></span>
-                    <button type="button">Add To Cart</button>
+                    <span><?= $post['date'] ?></span>
                 </div>
             <?php endforeach; ?>
         </div>
