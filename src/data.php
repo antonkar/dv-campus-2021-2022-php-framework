@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function catalogGetCategory(): array
+function blogGetCategory(): array
 {
     return [
         1 => [
@@ -26,7 +26,7 @@ function catalogGetCategory(): array
     ];
 }
 
-function catalogGetPost(): array
+function blogGetPost(): array
 {
     return [
         1 => [
@@ -34,6 +34,7 @@ function catalogGetPost(): array
             'name'        => 'Post 1',
             'url'         => 'post-1',
             'description' => 'Post 1 Description',
+            'author'      => 'John Doe',
             'date'        => '30.01.2020'
         ],
         2 => [
@@ -41,27 +42,31 @@ function catalogGetPost(): array
             'name'        => 'Post 2',
             'url'         => 'post-2',
             'description' => 'Post 2 Description',
-            'date'        => '15.02.2020'
+            'author'      => 'Jane Doe',
+            'date'        => '15.07.2020'
         ],
         3 => [
             'post_id'  => 3,
             'name'        => 'Post 3',
             'url'         => 'post-3',
             'description' => 'Post 3 Description',
-            'date'        => '28.03.2020'
+            'author'      => 'John Doe',
+            'date'        => '28.04.2020'
         ],
         4 => [
             'post_id'  => 4,
             'name'        => 'Post 4',
             'url'         => 'post-4',
             'description' => 'Post 4 Description',
-            'date'        => '22.04.2020'
+            'author'      => 'Jane Doe',
+            'date'        => '22.03.2020'
         ],
         5 => [
             'post_id'  => 5,
             'name'        => 'Post 5',
             'url'         => 'post-5',
             'description' => 'Post 5 Description',
+            'author'      => 'John Doe',
             'date'        => '07.06.2020'
         ],
         6 => [
@@ -69,21 +74,22 @@ function catalogGetPost(): array
             'name'        => 'Post 6',
             'url'         => 'post-6',
             'description' => 'Post 6 Description',
+            'author'      => 'Jane Doe',
             'date'        => '30.05.2020'
         ]
     ];
 }
 
-function catalogGetCategoryPost(int $categoryId): array
+function blogGetCategoryPost(int $categoryId): array
 {
-    $categories = catalogGetCategory();
+    $categories = blogGetCategory();
 
     if (!isset($categories[$categoryId])) {
         throw new InvalidArgumentException("Category with ID $categoryId does not exist");
     }
 
     $postsForCategory = [];
-    $posts = catalogGetPost();
+    $posts = blogGetPost();
 
     foreach ($categories[$categoryId]['posts'] as $postId) {
         if (!isset($posts[$postId])) {
@@ -96,10 +102,10 @@ function catalogGetCategoryPost(int $categoryId): array
     return $postsForCategory;
 }
 
-function catalogGetCategoryByUrl(string $url): ?array
+function blogGetCategoryByUrl(string $url): ?array
 {
     $data = array_filter(
-        catalogGetCategory(),
+        blogGetCategory(),
         static function ($category) use ($url) {
             return $category['url'] === $url;
         }
@@ -108,10 +114,10 @@ function catalogGetCategoryByUrl(string $url): ?array
     return array_pop($data);
 }
 
-function catalogGetPostByUrl(string $url): ?array
+function blogGetPostByUrl(string $url): ?array
 {
     $data = array_filter(
-        catalogGetPost(),
+       blogGetPost(),
         static function ($post) use ($url) {
             return $post['url'] === $url;
         }
@@ -119,3 +125,15 @@ function catalogGetPostByUrl(string $url): ?array
 
     return array_pop($data);
 }
+
+function blogGetPostByDate(): array
+{
+    $sorted = blogGetPost();
+    usort($sorted, static function($b, $a) {
+        return strtotime ($a['date']) <=> strtotime ($b['date']);
+    });
+    return $sorted;
+    //return array_slice($sorted, 0,3); For recent 3 posts instead of all post sorted
+}
+
+

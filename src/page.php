@@ -1,8 +1,8 @@
 <?php
-require_once 'data.php';
+require_once '../src/data.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{DV.Campus} PHP Framework</title>
@@ -13,23 +13,36 @@ require_once 'data.php';
             border: 1px dashed black;
         }
 
-        .product-list {
-            display: flex;
-        }
-
-        .product-list .product {
+        .post-list .product {
             max-width: 30%;
+        }
+        .post-list, h1 {
+            text-align: center
+        }
+        nav ul {
+            text-align: center;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 20px;
+        }
+        .logo{
+            float: left;
+        }
+        .postimg {
+            margin: 0 auto;
+            display: block;
         }
     </style>
 </head>
 <body>
 <header>
     <a href="/" title="{DV.Campus} PHP Framework">
-        <img src="logo.jpg" alt="{DV.Campus} Logo" width="200"/>
+        <img class="logo" src="logo.jpg" alt="{DV.Campus} Logo" width="200"/>
     </a>
     <nav>
         <ul>
-            <?php foreach (catalogGetCategory() as $category) : ?>
+            <?php foreach (blogGetCategory() as $category) : ?>
                 <li>
                     <a href="/<?= $category['url'] ?>"><?= $category['name'] ?></a>
                 </li>
@@ -39,20 +52,7 @@ require_once 'data.php';
 </header>
 
 <main>
-    <section title="Posts">
-        <h1><?= $data['name'] ?></h1>
-        <div class="post-list">
-            <?php foreach (catalogGetCategoryPost($data['category_id']) as $post) : ?>
-                <div class="post">
-                    <a href="/<?= $post['url'] ?>" title="<?= $post['name'] ?>">
-                        <img src="/post-placeholder.png" alt="<?= $post['name'] ?>" width="200"/>
-                    </a>
-                    <a href="/<?= $post['url'] ?>" title="<?= $post['name'] ?>"><?= $post['name'] ?></a>
-                    <span><?= $post['date'] ?></span>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </section>
+    <?php require_once "../src/pages/$page" ?>
 </main>
 
 <footer>
@@ -72,4 +72,4 @@ require_once 'data.php';
     <p>© Default Value 2021. All Rights Reserved.</p>
 </footer>
 </body>
-</html>
+    </html>
