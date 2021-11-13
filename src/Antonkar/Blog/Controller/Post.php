@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace antonkar\Blog\Controller;
+namespace Antonkar\Blog\Controller;
 
-use antonkar\Framework\Http\ControllerInterface;
+use Antonkar\Framework\Http\ControllerInterface;
 
 class Post implements ControllerInterface
 {
-    private \antonkar\Framework\Http\Request $request;
+    private \Antonkar\Framework\Http\Request $request;
 
     /**
-     * @param \antonkar\Framework\Http\Request $request
+     * @param \Antonkar\Framework\Http\Request $request
      */
     public function __construct(
-        \antonkar\Framework\Http\Request $request
+        \Antonkar\Framework\Http\Request $request
     ) {
         $this->request = $request;
     }

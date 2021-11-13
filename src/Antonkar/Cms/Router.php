@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace antonkar\Cms;
+namespace Antonkar\Cms;
 
-use antonkar\Cms\Controller\Page;
+use Antonkar\Cms\Controller\Page;
 
-class Router implements \antonkar\Framework\Http\RouterInterface
+class Router implements \Antonkar\Framework\Http\RouterInterface
 {
-    private \antonkar\Framework\Http\Request $request;
+    private \Antonkar\Framework\Http\Request $request;
 
     /**
-     * @param \antonkar\Framework\Http\Request $request
+     * @param \Antonkar\Framework\Http\Request $request
      */
     public function __construct(
-        \antonkar\Framework\Http\Request $request
+        \Antonkar\Framework\Http\Request $request
     ) {
         $this->request = $request;
     }

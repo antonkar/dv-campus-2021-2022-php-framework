@@ -1,6 +1,6 @@
 <?php
 
-namespace antonkar\Framework\Http;
+namespace Antonkar\Framework\Http;
 
 interface RouterInterface
 {

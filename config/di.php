@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 return [
-    \antonkar\Framework\Http\RequestDispatcher::class => DI\autowire()->constructorParameter(
+    \Antonkar\Framework\Http\RequestDispatcher::class => DI\autowire()->constructorParameter(
         'routers',
         [
-            \DI\get(\antonkar\Cms\Router::class),
-            \DI\get(\antonkar\Blog\Router::class),
-            \DI\get(\antonkar\ContactUs\Router::class)
+            \DI\get(\Antonkar\Cms\Router::class),
+            \DI\get(\Antonkar\Blog\Router::class),
+            \DI\get(\Antonkar\ContactUs\Router::class)
         ]
 
     )

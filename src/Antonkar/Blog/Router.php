@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace antonkar\Blog;
+namespace Antonkar\Blog;
 
-use antonkar\Blog\Controller\Category;
-use antonkar\Blog\Controller\Post;
+use Antonkar\Blog\Controller\Category;
+use Antonkar\Blog\Controller\Post;
 
-class Router implements \antonkar\Framework\Http\RouterInterface
+class Router implements \Antonkar\Framework\Http\RouterInterface
 {
-    private \antonkar\Framework\Http\Request $request;
+    private \Antonkar\Framework\Http\Request $request;
 
     /**
-     * @param \antonkar\Framework\Http\Request $request
+     * @param \Antonkar\Framework\Http\Request $request
      */
     public function __construct(
-        \antonkar\Framework\Http\Request $request
+        \Antonkar\Framework\Http\Request $request
     ) {
         $this->request = $request;
     }

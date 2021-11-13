@@ -1,7 +1,7 @@
 {
   "autoload": {
     "psr-4": {
-      "antonkar\\": "src/antonkar"
+      "Antonkar\\": "src/Antonkar"
     }
   },
   "require-dev": {

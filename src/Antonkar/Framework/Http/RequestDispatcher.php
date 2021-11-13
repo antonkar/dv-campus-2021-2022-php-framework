@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace antonkar\Framework\Http;
+namespace Antonkar\Framework\Http;
 
 class RequestDispatcher
 {
@@ -11,7 +11,7 @@ class RequestDispatcher
      */
     private array $routers;
 
-    private \antonkar\Framework\Http\Request $request;
+    private \Antonkar\Framework\Http\Request $request;
     private \DI\Container $container;
 
     /**
@@ -21,7 +21,7 @@ class RequestDispatcher
      */
     public function __construct(
         array $routers,
-        \antonkar\Framework\Http\Request $request,
+        \Antonkar\Framework\Http\Request $request,
         \DI\Container $container
     ) {
         foreach ($routers as $router) {

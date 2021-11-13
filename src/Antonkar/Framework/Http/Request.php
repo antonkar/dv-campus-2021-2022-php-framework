@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace antonkar\Framework\Http;
+namespace Antonkar\Framework\Http;
 
 class Request
 {

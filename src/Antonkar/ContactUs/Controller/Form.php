@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace antonkar\ContactUs\Controller;
+namespace Antonkar\ContactUs\Controller;
 
-use antonkar\Framework\Http\ControllerInterface;
+use Antonkar\Framework\Http\ControllerInterface;
 
 class Form implements ControllerInterface
 {

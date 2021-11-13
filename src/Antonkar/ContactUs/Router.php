@@ -2,23 +2,21 @@
 
 declare(strict_types=1);
 
-namespace antonkar\ContactUs;
+namespace Antonkar\ContactUs;
 
-use antonkar\ContactUs\Controller\Form;
+use Antonkar\ContactUs\Controller\Form;
 
-class Router implements \antonkar\Framework\Http\RouterInterface
+class Router implements \Antonkar\Framework\Http\RouterInterface
 {
     /**
      * @inheritDoc
      */
     public function match(string $requestUrl): string
     {
-        if ($requestUrl === 'contact-us')
-        {
+        if ($requestUrl === 'contact-us') {
             return Form::class;
         }
 
         return '';
-
     }
 }
