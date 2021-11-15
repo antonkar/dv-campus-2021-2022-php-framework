@@ -2,29 +2,17 @@
 
 declare(strict_types=1);
 
-require_once '../src/data.php';
-$requestUri = trim($_SERVER['REQUEST_URI'], '/');
+require_once '../vendor/autoload.php';
 
-switch ($requestUri) {
-    case '':
-        $page = 'home.php';
-        break;
-    case 'contact-us':
-        $page = 'contact-us.php';
-        break;
-    default:
-        if ($data = blogGetCategoryByUrl($requestUri)) {
-            $page = 'category.php';
-            break;
-        }
+$containerBuilder = new \DI\ContainerBuilder();
 
-        if ($data = blogGetPostByUrl($requestUri)) {
-            $page = 'post.php';
-            break;
-        }
-
-        break;
+try {
+    $containerBuilder->addDefinitions('../config/di.php');
+    $container = $containerBuilder->build();
+    /** @var \Antonkar\Framework\Http\RequestDispatcher $requestDispatcher */
+    $requestDispatcher = $container->get(\Antonkar\Framework\Http\RequestDispatcher::class);
+    $requestDispatcher->dispatch();
+} catch (\Exception $e) {
+    echo "{$e->getMessage()} in file {$e->getFile()} at line {$e->getLine()}";
+    exit(1);
 }
-
-
-require_once "../src/page.php";

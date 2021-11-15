@@ -117,7 +117,7 @@ function blogGetCategoryByUrl(string $url): ?array
 function blogGetPostByUrl(string $url): ?array
 {
     $data = array_filter(
-       blogGetPost(),
+        blogGetPost(),
         static function ($post) use ($url) {
             return $post['url'] === $url;
         }
@@ -129,11 +129,9 @@ function blogGetPostByUrl(string $url): ?array
 function blogGetPostByDate(): array
 {
     $sorted = blogGetPost();
-    usort($sorted, static function($b, $a) {
-        return strtotime ($a['date']) <=> strtotime ($b['date']);
+    usort($sorted, static function ($b, $a) {
+        return strtotime($a['date']) <=> strtotime($b['date']);
     });
     return $sorted;
     //return array_slice($sorted, 0,3); For recent 3 posts instead of all post sorted
 }
-
-
